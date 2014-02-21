@@ -615,7 +615,7 @@ vector<unsigned char> ParseHex(const string& str)
 
 static void InterpretNegativeSetting(string name, map<string, string>& mapSettingsRet)
 {
-    // interpret -nofoo as -foo=0 (and -nofoo=0 as -foo=1) as long as -foo not set
+    // interpret -nogng as -gng=0 (and -nogng=0 as -gng=1) as long as -gng not set
     if (name.find("-no") == 0)
     {
         std::string positive("-");
@@ -659,7 +659,7 @@ void ParseParameters(int argc, const char* const argv[])
     {
         string name = entry.first;
 
-        //  interpret --foo as -foo (as long as both are not set)
+        //  interpret --gng as -gng (as long as both are not set)
         if (name.find("--") == 0)
         {
             std::string singleDash(name.begin()+1, name.end());
@@ -668,7 +668,7 @@ void ParseParameters(int argc, const char* const argv[])
             name = singleDash;
         }
 
-        // interpret -nofoo as -foo=0 (and -nofoo=0 as -foo=1) as long as -foo not set
+        // interpret -nogng as -gng=0 (and -nogng=0 as -gng=1) as long as -gng not set
         InterpretNegativeSetting(name, mapArgs);
     }
 }
@@ -1085,7 +1085,7 @@ static std::string FormatException(std::exception* pex, const char* pszThread)
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(NULL, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "freicoin";
+    const char* pszModule = "GingerCoin";
 #endif
     if (pex)
         return strprintf(
@@ -1121,13 +1121,13 @@ void PrintExceptionContinue(std::exception* pex, const char* pszThread)
 boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Freicoin
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Freicoin
-    // Mac: ~/Library/Application Support/Freicoin
-    // Unix: ~/.freicoin
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\GingerCoin
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\GingerCoin
+    // Mac: ~/Library/Application Support/GingerCoin
+    // Unix: ~/.GingerCoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Freicoin";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "GingerCoin";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -1139,10 +1139,10 @@ boost::filesystem::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     fs::create_directory(pathRet);
-    return pathRet / "Freicoin";
+    return pathRet / "GingerCoin";
 #else
     // Unix
-    return pathRet / ".freicoin";
+    return pathRet / ".GingerCoin";
 #endif
 #endif
 }
@@ -1184,7 +1184,7 @@ const boost::filesystem::path &GetDataDir(bool fNetSpecific)
 
 boost::filesystem::path GetConfigFile()
 {
-    boost::filesystem::path pathConfigFile(GetArg("-conf", "freicoin.conf"));
+    boost::filesystem::path pathConfigFile(GetArg("-conf", "GingerCoin.conf"));
     if (!pathConfigFile.is_complete()) pathConfigFile = GetDataDir(false) / pathConfigFile;
     return pathConfigFile;
 }
@@ -1194,19 +1194,19 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
 {
     boost::filesystem::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good())
-        return; // No freicoin.conf file is OK
+        return; // No GingerCoin.conf file is OK
 
     set<string> setOptions;
     setOptions.insert("*");
 
     for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it)
     {
-        // Don't overwrite existing settings so command line settings override freicoin.conf
+        // Don't overwrite existing settings so command line settings override GingerCoin.conf
         string strKey = string("-") + it->string_key;
         if (mapSettingsRet.count(strKey) == 0)
         {
             mapSettingsRet[strKey] = it->value[0];
-            // interpret nofoo=1 as foo=0 (and nofoo=0 as foo=1) as long as foo not set)
+            // interpret nogng=1 as gng=0 (and nogng=0 as gng=1) as long as gng not set)
             InterpretNegativeSetting(strKey, mapSettingsRet);
         }
         mapMultiSettingsRet[strKey].push_back(it->value[0]);
@@ -1215,7 +1215,7 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
 
 boost::filesystem::path GetPidFile()
 {
-    boost::filesystem::path pathPidFile(GetArg("-pid", "freicoind.pid"));
+    boost::filesystem::path pathPidFile(GetArg("-pid", "GingerCoind.pid"));
     if (!pathPidFile.is_complete()) pathPidFile = GetDataDir() / pathPidFile;
     return pathPidFile;
 }
@@ -1359,10 +1359,10 @@ void AddTimeData(const CNetAddr& ip, int64 nTime)
                 if (!fMatch)
                 {
                     fDone = true;
-                    string strMessage = _("Warning: Please check that your computer's date and time are correct! If your clock is wrong Freicoin will not work properly.");
+                    string strMessage = _("Warning: Please check that your computer's date and time are correct! If your clock is wrong GingerCoin will not work properly.");
                     strMiscWarning = strMessage;
                     printf("*** %s\n", strMessage.c_str());
-                    uiInterface.ThreadSafeMessageBox(strMessage+" ", string("Freicoin"), CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION);
+                    uiInterface.ThreadSafeMessageBox(strMessage+" ", string("GingerCoin"), CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION);
                 }
             }
         }

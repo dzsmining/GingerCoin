@@ -1,20 +1,20 @@
-#ifndef FREICOINUNITS_H
-#define FREICOINUNITS_H
+#ifndef GingerCoinUNITS_H
+#define GingerCoinUNITS_H
 
 #include "bignum.h" // for mpq
 
 #include <QString>
 #include <QAbstractListModel>
 
-/** Freicoin unit definitions. Encapsulates parsing and formatting
+/** GingerCoin unit definitions. Encapsulates parsing and formatting
    and serves as list model for dropdown selection boxes.
 */
-class FreicoinUnits: public QAbstractListModel
+class GingerCoinUnits: public QAbstractListModel
 {
 public:
-    explicit FreicoinUnits(QObject *parent);
+    explicit GingerCoinUnits(QObject *parent);
 
-    /** Freicoin units.
+    /** GingerCoin units.
       @note Source: https://en.bitcoin.it/wiki/Units . Please add only sensible ones
      */
     enum Unit
@@ -61,8 +61,8 @@ public:
     QVariant data(const QModelIndex &index, int role) const;
     ///@}
 private:
-    QList<FreicoinUnits::Unit> unitlist;
+    QList<GingerCoinUnits::Unit> unitlist;
 };
-typedef FreicoinUnits::Unit FreicoinUnit;
+typedef GingerCoinUnits::Unit GingerCoinUnit;
 
-#endif // FREICOINUNITS_H
+#endif // GingerCoinUNITS_H

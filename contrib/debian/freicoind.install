@@ -1,2 +1,2 @@
-debian/bin/freicoind usr/bin
-src/freicoind usr/lib/freicoin
+debian/bin/GingerCoind usr/bin
+src/GingerCoind usr/lib/GingerCoin

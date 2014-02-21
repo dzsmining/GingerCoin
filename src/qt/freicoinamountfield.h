@@ -1,5 +1,5 @@
-#ifndef FREICOINFIELD_H
-#define FREICOINFIELD_H
+#ifndef GingerCoinFIELD_H
+#define GingerCoinFIELD_H
 
 #include "bignum.h" // for mpq
 
@@ -10,14 +10,14 @@ class QDoubleSpinBox;
 class QValueComboBox;
 QT_END_NAMESPACE
 
-/** Widget for entering freicoin amounts.
+/** Widget for entering GingerCoin amounts.
   */
-class FreicoinAmountField: public QWidget
+class GingerCoinAmountField: public QWidget
 {
     Q_OBJECT
     Q_PROPERTY(qint64 value READ value WRITE setValue NOTIFY textChanged USER true)
 public:
-    explicit FreicoinAmountField(QWidget *parent = 0);
+    explicit GingerCoinAmountField(QWidget *parent = 0);
 
     qint64 value(bool *valid=0) const;
     void setValue(qint64 value);
@@ -61,4 +61,4 @@ private slots:
 };
 
 
-#endif // FREICOINFIELD_H
+#endif // GingerCoinFIELD_H

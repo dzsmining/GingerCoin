@@ -2,8 +2,8 @@
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef FREICOIN_UTIL_H
-#define FREICOIN_UTIL_H
+#ifndef GingerCoin_UTIL_H
+#define GingerCoin_UTIL_H
 
 #include "uint256.h"
 
@@ -395,7 +395,7 @@ inline bool IsSwitchChar(char c)
 /**
  * Return string argument or default value
  *
- * @param strArg Argument to get (e.g. "-foo")
+ * @param strArg Argument to get (e.g. "-gng")
  * @param default (e.g. "1")
  * @return command-line argument or default value
  */
@@ -404,7 +404,7 @@ std::string GetArg(const std::string& strArg, const std::string& strDefault);
 /**
  * Return integer argument or default value
  *
- * @param strArg Argument to get (e.g. "-foo")
+ * @param strArg Argument to get (e.g. "-gng")
  * @param default (e.g. 1)
  * @return command-line argument (0 if invalid number) or default value
  */
@@ -413,7 +413,7 @@ int64 GetArg(const std::string& strArg, int64 nDefault);
 /**
  * Return boolean argument or default value
  *
- * @param strArg Argument to get (e.g. "-foo")
+ * @param strArg Argument to get (e.g. "-gng")
  * @param default (true or false)
  * @return command-line argument or default value
  */
@@ -422,7 +422,7 @@ bool GetBoolArg(const std::string& strArg, bool fDefault=false);
 /**
  * Set an argument if it doesn't already have a value
  *
- * @param strArg Argument to set (e.g. "-foo")
+ * @param strArg Argument to set (e.g. "-gng")
  * @param strValue Value (e.g. "1")
  * @return true if argument gets set, false if it already had a value
  */
@@ -431,7 +431,7 @@ bool SoftSetArg(const std::string& strArg, const std::string& strValue);
 /**
  * Set a boolean argument if it doesn't already have a value
  *
- * @param strArg Argument to set (e.g. "-foo")
+ * @param strArg Argument to set (e.g. "-gng")
  * @param fValue Value (e.g. false)
  * @return true if argument gets set, false if it already had a value
  */

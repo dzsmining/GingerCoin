@@ -1,9 +1,9 @@
 #!/bin/bash
 # create multiresolution windows icon
-ICON_SRC=../../src/qt/res/icons/freicoin.png
-ICON_DST=../../src/qt/res/icons/freicoin.ico
-convert ${ICON_SRC} -resize 16x16 freicoin-16.png
-convert ${ICON_SRC} -resize 32x32 freicoin-32.png
-convert ${ICON_SRC} -resize 48x48 freicoin-48.png
-convert freicoin-16.png freicoin-32.png freicoin-48.png ${ICON_DST}
+ICON_SRC=../../src/qt/res/icons/GingerCoin.png
+ICON_DST=../../src/qt/res/icons/GingerCoin.ico
+convert ${ICON_SRC} -resize 16x16 GingerCoin-16.png
+convert ${ICON_SRC} -resize 32x32 GingerCoin-32.png
+convert ${ICON_SRC} -resize 48x48 GingerCoin-48.png
+convert GingerCoin-16.png GingerCoin-32.png GingerCoin-48.png ${ICON_DST}
 

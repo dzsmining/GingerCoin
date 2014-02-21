@@ -435,12 +435,12 @@ bool SetProxy(enum Network net, CService addrProxy, int nSocksVersion) {
     return true;
 }
 
-bool GetProxy(enum Network net, proxyType &proxyInfoOut) {
+bool GetProxy(enum Network net, proxyType &proxyIngngut) {
     assert(net >= 0 && net < NET_MAX);
     LOCK(cs_proxyInfos);
     if (!proxyInfo[net].second)
         return false;
-    proxyInfoOut = proxyInfo[net];
+    proxyIngngut = proxyInfo[net];
     return true;
 }
 
@@ -454,11 +454,11 @@ bool SetNameProxy(CService addrProxy, int nSocksVersion) {
     return true;
 }
 
-bool GetNameProxy(proxyType &nameproxyInfoOut) {
+bool GetNameProxy(proxyType &nameproxyIngngut) {
     LOCK(cs_proxyInfos);
     if (!nameproxyInfo.second)
         return false;
-    nameproxyInfoOut = nameproxyInfo;
+    nameproxyIngngut = nameproxyInfo;
     return true;
 }
 

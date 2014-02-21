@@ -12,8 +12,8 @@
 // - E-mail usually won't line-break if there's no punctuation to break at.
 // - Double-clicking selects the whole number as one word if it's all alphanumeric.
 //
-#ifndef FREICOIN_BASE58_H
-#define FREICOIN_BASE58_H
+#ifndef GingerCoin_BASE58_H
+#define GingerCoin_BASE58_H
 
 #include <string>
 #include <vector>
@@ -253,31 +253,31 @@ public:
     bool operator> (const CBase58Data& b58) const { return CompareTo(b58) >  0; }
 };
 
-/** base58-encoded Freicoin addresses.
+/** base58-encoded GingerCoin addresses.
  * Public-key-hash-addresses have version 0 (or 111 testnet).
  * The data vector contains RIPEMD160(SHA256(pubkey)), where pubkey is the serialized public key.
  * Script-hash-addresses have version 5 (or 196 testnet).
  * The data vector contains RIPEMD160(SHA256(cscript)), where cscript is the serialized redemption script.
  */
-class CFreicoinAddress;
-class CFreicoinAddressVisitor : public boost::static_visitor<bool>
+class CGingerCoinAddress;
+class CGingerCoinAddressVisitor : public boost::static_visitor<bool>
 {
 private:
-    CFreicoinAddress *addr;
+    CGingerCoinAddress *addr;
 public:
-    CFreicoinAddressVisitor(CFreicoinAddress *addrIn) : addr(addrIn) { }
+    CGingerCoinAddressVisitor(CGingerCoinAddress *addrIn) : addr(addrIn) { }
     bool operator()(const CKeyID &id) const;
     bool operator()(const CScriptID &id) const;
     bool operator()(const CNoDestination &no) const;
 };
 
-class CFreicoinAddress : public CBase58Data
+class CGingerCoinAddress : public CBase58Data
 {
 public:
     enum
     {
         PUBKEY_ADDRESS = 0,
-        SCRIPT_ADDRESS = 5,
+        SCRIPT_ADDRESS = 38,
         PUBKEY_ADDRESS_TEST = 111,
         SCRIPT_ADDRESS_TEST = 196,
     };
@@ -294,7 +294,7 @@ public:
 
     bool Set(const CTxDestination &dest)
     {
-        return boost::apply_visitor(CFreicoinAddressVisitor(this), dest);
+        return boost::apply_visitor(CGingerCoinAddressVisitor(this), dest);
     }
 
     bool IsValid() const
@@ -327,21 +327,21 @@ public:
         return fExpectTestNet == fTestNet && vchData.size() == nExpectedSize;
     }
 
-    CFreicoinAddress()
+    CGingerCoinAddress()
     {
     }
 
-    CFreicoinAddress(const CTxDestination &dest)
+    CGingerCoinAddress(const CTxDestination &dest)
     {
         Set(dest);
     }
 
-    CFreicoinAddress(const std::string& strAddress)
+    CGingerCoinAddress(const std::string& strAddress)
     {
         SetString(strAddress);
     }
 
-    CFreicoinAddress(const char* pszAddress)
+    CGingerCoinAddress(const char* pszAddress)
     {
         SetString(pszAddress);
     }
@@ -411,12 +411,12 @@ public:
     }
 };
 
-bool inline CFreicoinAddressVisitor::operator()(const CKeyID &id) const         { return addr->Set(id); }
-bool inline CFreicoinAddressVisitor::operator()(const CScriptID &id) const      { return addr->Set(id); }
-bool inline CFreicoinAddressVisitor::operator()(const CNoDestination &id) const { return false; }
+bool inline CGingerCoinAddressVisitor::operator()(const CKeyID &id) const         { return addr->Set(id); }
+bool inline CGingerCoinAddressVisitor::operator()(const CScriptID &id) const      { return addr->Set(id); }
+bool inline CGingerCoinAddressVisitor::operator()(const CNoDestination &id) const { return false; }
 
 /** A base58-encoded secret key */
-class CFreicoinSecret : public CBase58Data
+class CGingerCoinSecret : public CBase58Data
 {
 public:
     void SetSecret(const CSecret& vchSecret, bool fCompressed)
@@ -464,12 +464,12 @@ public:
         return SetString(strSecret.c_str());
     }
 
-    CFreicoinSecret(const CSecret& vchSecret, bool fCompressed)
+    CGingerCoinSecret(const CSecret& vchSecret, bool fCompressed)
     {
         SetSecret(vchSecret, fCompressed);
     }
 
-    CFreicoinSecret()
+    CGingerCoinSecret()
     {
     }
 };

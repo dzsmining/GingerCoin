@@ -1,6 +1,6 @@
 [Protocol]
-exec=freicoin-qt '%u'
-protocol=freicoin
+exec=GingerCoin-qt '%u'
+protocol=GingerCoin
 input=none
 output=none
 helper=true
